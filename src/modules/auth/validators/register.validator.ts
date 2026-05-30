@@ -20,5 +20,4 @@ export const registerSchema = z.object({
     .max(100)
 });
 
-export type RegisterInput =
-  z.infer<typeof registerSchema>;
+export type RegisterInput = z.infer<typeof registerSchema>;
