@@ -15,7 +15,7 @@ const envSchema = z.object({
   DATABASE_URL: z.string().min(1),
 
   JWT_ACCESS_SECRET: z.string().min(1),
-  JWT_EXPIRES_IN: z.string().min(1),
+  JWT_ACCESS_EXPIRES_IN: z.string().min(1),
 
   JWT_REFRESH_SECRET: z.string().min(1),
   JWT_REFRESH_EXPIRES_IN: z.string().min(1),
@@ -35,5 +35,4 @@ if (!parsedEnv.success) {
 
   process.exit(1);
 }
-
 export const env = parsedEnv.data;

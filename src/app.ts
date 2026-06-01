@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { requestId } from "./shared/middleware/request-id.js";
 import { requestLogger } from "./shared/middleware/request-logger.js";
+import { errorHandler } from "./shared/middleware/error-handler.js";
 
 const app = express();
 
@@ -31,6 +32,11 @@ app.get("/health", (_req, res) => {
   });
 });
 
+// Importing routes
+import authRoutes from "./modules/auth/routes/auth.routes.js";
+// Mounting routes
+app.use("/api/auth", authRoutes);
+
 // 404 Handler
 app.use((_req, res) => {
   res.status(404).json({
@@ -41,5 +47,8 @@ app.use((_req, res) => {
     }
   });
 });
+
+// Global error handler to catch and handle all errors thrown in the application
+app.use(errorHandler);
 
 export default app;
