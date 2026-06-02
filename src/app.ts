@@ -37,6 +37,21 @@ import authRoutes from "./modules/auth/routes/auth.routes.js";
 // Mounting routes
 app.use("/api/auth", authRoutes);
 
+
+import { db } from "./infrastructure/database/db.js";
+
+app.get("/db-health", async (_req, res) => {
+  const result = await db.query(
+    "SELECT NOW() as current_time"
+  );
+
+  res.json({
+    success: true,
+    data: result.rows[0]
+  });
+});
+
+
 // 404 Handler
 app.use((_req, res) => {
   res.status(404).json({
