@@ -13,6 +13,11 @@ CREATE TABLE users (
     email VARCHAR(255)
         NOT NULL
         UNIQUE,
+    
+    -- I will remove this later
+    role VARCHAR(50)
+        NOT NULL
+        DEFAULT 'GUEST',
 
     password_hash TEXT
         NOT NULL,

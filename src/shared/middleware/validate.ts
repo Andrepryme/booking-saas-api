@@ -11,10 +11,12 @@ export function validate(schema: ZodSchema): RequestHandler {
       for (const issue of result.error.issues) {
         const field = issue.path.join(".");
 
+        // Initialize the array for this field if it doesn't exist
         if (!fields[field]) {
           fields[field] = [];
         }
 
+        // Customize the error message for missing required fields
         let message = issue.message;
         if (issue.code === "invalid_type" && issue.input === undefined) {
           message = `${field} is required`;
@@ -22,7 +24,6 @@ export function validate(schema: ZodSchema): RequestHandler {
         fields[field].push(message);
       
       }
-
       return next(
         new ValidationError({ fields })
       );

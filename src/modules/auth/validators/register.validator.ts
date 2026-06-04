@@ -1,9 +1,12 @@
 import { z } from "zod";
+import { userRoles } from "../../users/types/user.types.js";
 
 export const registerSchema = z.object({
   email: z.email("Please provide a valid email address"),
 
-  
+  role: z
+  .enum(userRoles, "Role must be a valid user role"),
+    
   password: z
     .string()
     .min(8, "Password must be at least 8 characters long"),
