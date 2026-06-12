@@ -1,12 +1,12 @@
 import { AppError } from "./AppError.js";
 
-export class InvalidCredentialsError extends AppError {
+export class PropertyNotFoundError extends AppError {
 
   constructor(metadata?: Record<string, unknown>) {
     super(
-      401,
-      "INVALID_CREDENTIALS",
-      "Invalid email or password",
+      404,
+      "PROPERTY_NOT_FOUND",
+      "Property not found",
       metadata
     );
   }

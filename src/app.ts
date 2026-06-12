@@ -33,9 +33,12 @@ app.get("/health", (_req, res) => {
 });
 
 // Importing routes
-import authRoutes from "./modules/auth/routes/auth.routes.js";
+import { authRoutes } from "./modules/auth/routes/auth.routes.js";
+import { propertyRoutes } from "./modules/properties/routes/property.routes.js";
+
 // Mounting routes
 app.use("/api/auth", authRoutes);
+app.use("/api/properties", propertyRoutes);
 
 
 // 404 Handler

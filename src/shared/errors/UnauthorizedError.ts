@@ -1,12 +1,11 @@
 import { AppError } from "./AppError.js";
 
-export class InvalidCredentialsError extends AppError {
-
+export class UnauthorizedError extends AppError {
   constructor(metadata?: Record<string, unknown>) {
     super(
       401,
-      "INVALID_CREDENTIALS",
-      "Invalid email or password",
+      "UNAUTHORIZED",
+      "Authentication failed",
       metadata
     );
   }

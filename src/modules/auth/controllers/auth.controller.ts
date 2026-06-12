@@ -32,4 +32,18 @@ export class AuthController {
       data: authResponse
     });
   }
+
+  async me(req: Request, res: Response): Promise<void> {
+    res.status(200).json({
+      success: true,
+      data: req.user
+    });
+  }
+
+  async adminTest(_req: Request, res: Response): Promise<void> {
+    res.status(200).json({
+      success: true,
+      message: "Admin access granted"
+    });
+  }
 }

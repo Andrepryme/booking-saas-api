@@ -42,12 +42,7 @@ export class UserRepository {
       `SELECT * FROM users WHERE email = $1`,
       [email]
     );
-
-    if (!result.rows[0]) {
-      return null;
-    }
-
-    return this.mapRowToUser(result.rows[0]);
+    return result.rows[0] ? this.mapRowToUser(result.rows[0]) : null;
   }
 
   async findById(id: string): Promise<User | null> {
@@ -57,9 +52,6 @@ export class UserRepository {
       [id]
     );
 
-    if (!result.rows[0]) {
-      return null;
-    }
-    return this.mapRowToUser(result.rows[0]);
+    return result.rows[0] ? this.mapRowToUser(result.rows[0]) : null;
   }
 }
